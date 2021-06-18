@@ -1,0 +1,48 @@
+{
+	"info": {
+		"_postman_id": "f7f7318a-beea-41ae-b1f6-a7c9a0676cfa",
+		"name": "Ejercicio_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Check that email exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check that email: \"+pm.variables.get('emailToVerify')+\" exist in the list of Data\", function(){\r",
+							"    let jsonDate = pm.response.json();\r",
+							"    let emailToVerify = pm.variables.get('emailToVerify');\r",
+							"\r",
+							"    pm.expect(jsonDate.data.indexOf(emailToVerify)).not.eql(\"-1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Sitio}}api/users?page=2",
+					"host": [
+						"{{Sitio}}api"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
